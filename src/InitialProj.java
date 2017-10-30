@@ -17,22 +17,29 @@ public class InitialProj {
 		String word = "";
 		
 		Scanner reader = new Scanner(System.in);
-		while(word != "Stop" || word != "stop")
+		while(!(word.equals("Stop")) && !(word.equals("stop")))
 		{
 			//Get input to decide next step
 			System.out.println("What would you like to do? Write, Read, or enter Stop to exit");
 			word = reader.nextLine();
-			if(word == "write" || word == "Write")
+			if(word.equals("write") || word.equals("Write"))
 			{
 				writer();
 			}
-			else if(word == "read" || word == "Read")
+			else if(word.equals("read") || word.equals("Read"))
 			{
 				reader();
 			}
 			else
 			{
-				System.out.println("Invalid input. Please enter a valid input \n\n\n\n");
+				if(!(word.equals("stop")) && !(word.equals("Stop")))
+				{
+					System.out.println("Invalid input. Please enter a valid input \n\n\n\n");
+				}
+				else
+				{
+					System.out.println("Exiting program.... .... ....");
+				}
 			}
 		}
 
