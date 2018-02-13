@@ -36,14 +36,14 @@ public class InitialProj {
 		
 		//Setting new directory
 		System.setProperty("user.dir", newDir);
-		System.out.println(System.getProperty("User.dir"));
+		System.out.println(System.getProperty("user.dir"));
 		
 		//Testing new file
 		File test = new File(newDir, "Hello.txt");
 		//boolean file = new File()
 // if the directory does not exist, create it
 		
-		boolean desktop = new File("c:\\Users\\" + user + "\\Desktop\\test\\test2").mkdirs();
+		boolean desktop = new File("c:\\Users\\" + user + "\\Desktop\\test").mkdirs();
 		
 //Loop that runs the program		
 		while(!(word.toLowerCase().equals("stop")))
