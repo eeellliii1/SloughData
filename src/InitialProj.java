@@ -20,17 +20,30 @@ public class InitialProj {
 		String word = "";
 		String fileName = "";
 		Scanner reader = new Scanner(System.in);
+		//Gets the current directory
 		String dir = System.getProperty("user.dir");
 		System.out.println(dir);
+		//Gets current user
 		String[] userSplit = dir.split(Pattern.quote("\\"));
 		System.out.println(userSplit[2]);
 		String user = userSplit[2];
 		
-		System.setProperty("user.dir", "c:\\Users\\" + user + "\\Desktop");
-
+		//Sets current directory
+		String newDir = "C:\\Users\\" + user + "\\Desktop\\test";
+		
+		//Checks directory
+		System.out.println(newDir);
+		
+		//Setting new directory
+		System.setProperty("user.dir", newDir);
+		System.out.println(System.getProperty("User.dir"));
+		
+		//Testing new file
+		File test = new File(newDir, "Hello.txt");
+		//boolean file = new File()
 // if the directory does not exist, create it
 		
-		boolean desktop = new File("c:\\Users\\" + user + "\\Desktop").mkdirs();
+		boolean desktop = new File("c:\\Users\\" + user + "\\Desktop\\test\\test2").mkdirs();
 		
 //Loop that runs the program		
 		while(!(word.toLowerCase().equals("stop")))
@@ -56,7 +69,9 @@ public class InitialProj {
 			{
 				//System.setProperty("user.dir", "c:\\Users\\" + user + "\\Desktop")
 				System.out.println("Enter the name of the file you wish to write:");
-				fileName = reader.nextLine();
+				fileName = reader.nextLine() + ".txt";
+				//Tests file name
+				System.out.println(fileName);
 				reader(fileName);
 			}
 			else
@@ -80,6 +95,7 @@ public class InitialProj {
 		String contents = reader(fileName);
 		StringBuilder appender = new StringBuilder(contents);
 		String text = "";
+		//Creates file writer scanner
 		Scanner fileWrSc = new Scanner(System.in);
 		System.out.println("Writes---------------");
 		BufferedWriter fileWrite = new BufferedWriter(new FileWriter(fileName));
@@ -93,13 +109,13 @@ public class InitialProj {
 	public static String reader(String fileName)
 	{
 		String text = "";
-		//System.out.println("Reads---------------");
+		System.out.println("Reads---------------");
 		String nextLine = null;
 		try
 		{
 			FileReader fileRead = new FileReader(fileName);
 			BufferedReader buffFileRead = new BufferedReader(fileRead);
-//Keep reading the file while there is file left to be read
+			//Keep reading the file while there is file left to be read
 			while((nextLine = buffFileRead.readLine()) != null)
 			{
 				System.out.println(nextLine + "\n");
