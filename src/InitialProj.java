@@ -9,6 +9,7 @@
 import java.util.*;
 import java.util.regex.Pattern;
 import java.io.*;
+import java.io.File;
 public class InitialProj {
 
 	/**
@@ -36,11 +37,12 @@ public class InitialProj {
 		
 		//Setting new directory
 		System.setProperty("user.dir", newDir);
+		
+		//Testing new directory
 		System.out.println(System.getProperty("user.dir"));
 		
 		//Testing new file
-		File test = new File(newDir, "Hello.txt");
-		//boolean file = new File()
+		new File(newDir);
 // if the directory does not exist, create it
 		
 		boolean desktop = new File("c:\\Users\\" + user + "\\Desktop\\test").mkdirs();
@@ -54,7 +56,7 @@ public class InitialProj {
 			if(word.toLowerCase().equals("write"))
 			{
 				System.out.println("Enter the name of the file you wish to write:");
-				fileName = reader.nextLine();
+				fileName = newDir += ("\\" + reader.nextLine() + ".txt");
 				try 
 				{
 					writer(fileName);
@@ -69,7 +71,7 @@ public class InitialProj {
 			{
 				//System.setProperty("user.dir", "c:\\Users\\" + user + "\\Desktop")
 				System.out.println("Enter the name of the file you wish to write:");
-				fileName = reader.nextLine() + ".txt";
+				fileName = newDir += ("\\" + reader.nextLine() + ".txt");
 				//Tests file name
 				System.out.println(fileName);
 				reader(fileName);
