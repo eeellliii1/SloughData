@@ -91,6 +91,41 @@ public class InitialProj {
 
 	}
 	
+	private class file
+	{
+		int oxygen;
+		int ph;
+		int date[] = new int[3];
+		String etc;
+		int streamVel[] = new int[3] ;
+		
+		public int getOxygen()
+		{
+			return oxygen;
+		}
+		
+		public int getPh()
+		{
+			return ph;
+		}
+		
+		public int getMonth()
+		{
+			return date[0];
+		}
+		
+		public int getDay()
+		{
+			return date[1];
+		}
+		
+		public int getYear()
+		{
+			return date[2];
+		}
+		
+	}
+	
 	//Writing method
 	public static void writer(String fileName) throws IOException
 	{
