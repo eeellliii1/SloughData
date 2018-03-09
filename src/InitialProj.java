@@ -51,6 +51,16 @@ public class InitialProj {
 		while(!(word.toLowerCase().equals("stop")))
 		{
 //Gets input to decide next step
+
+			File data = new File(newDir);
+			File[] fileList = data.listFiles();
+			String fileListStr = "";
+			for(File i : fileList)
+			{
+				fileListStr += " " + i.getName();
+			}
+			System.out.println(fileListStr);
+		
 			System.out.println("What would you like to do? Write, Read, or enter Stop to exit");
 			word = reader.nextLine();
 			if(word.toLowerCase().equals("write"))
@@ -93,6 +103,8 @@ public class InitialProj {
 	
 	private class file
 	{
+		String filename;
+		String contents;
 		int oxygen;
 		int ph;
 		int date[] = new int[3];
