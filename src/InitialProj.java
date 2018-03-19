@@ -15,6 +15,7 @@ public class InitialProj {
 	/**
 	 * @param args
 	 */
+
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -43,14 +44,14 @@ public class InitialProj {
 		
 		//Testing new file
 		new File(newDir);
-// if the directory does not exist, create it
+		// if the directory does not exist, create it
 		
 		boolean desktop = new File("c:\\Users\\" + user + "\\Desktop\\test").mkdirs();
 		
-//Loop that runs the program		
+		//Loop that runs the program		
 		while(!(word.toLowerCase().equals("stop")))
 		{
-//Gets input to decide next step
+		//Gets input to decide next step
 
 			File data = new File(newDir);
 			File[] fileList = data.listFiles();
@@ -80,11 +81,15 @@ public class InitialProj {
 			else if(word.toLowerCase().equals("read"))
 			{
 				//System.setProperty("user.dir", "c:\\Users\\" + user + "\\Desktop")
-				System.out.println("Enter the name of the file you wish to write:");
-				fileName = newDir += ("\\" + reader.nextLine() + ".txt");
+				System.out.println("Please enter the date in the format day/month/year (EX: 03/08/2000)");
+				String dateName = reader.nextLine();
+				fileName = newDir += ("\\" + dateName + ".txt");
+				
+				
 				//Tests file name
 				System.out.println(fileName);
 				reader(fileName);
+				Filer file = new Filer(dateName, reader(fileName));
 			}
 			else
 			{
@@ -101,15 +106,23 @@ public class InitialProj {
 
 	}
 	
-	private class file
+	private static class Filer
 	{
-		String filename;
+		String fileName;
 		String contents;
 		int oxygen;
 		int ph;
 		int date[] = new int[3];
 		String etc;
 		int streamVel[] = new int[3] ;
+		String group;
+		
+		public Filer(String fileName, String contents)
+		{
+			fileName = this.fileName;
+			contents = this.contents;
+			
+		}
 		
 		public int getOxygen()
 		{
@@ -136,6 +149,10 @@ public class InitialProj {
 			return date[2];
 		}
 		
+		public String getGroup()
+		{
+			return group;
+		}
 	}
 	
 	//Writing method
@@ -154,7 +171,7 @@ public class InitialProj {
 		fileWrite.close();
 	}
 	
-//Reading method
+	//Reading method
 	public static String reader(String fileName)
 	{
 		String text = "";
