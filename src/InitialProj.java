@@ -56,10 +56,13 @@ public class InitialProj {
 			File data = new File(newDir);
 			File[] fileList = data.listFiles();
 			String fileListStr = "";
-			for(File i : fileList)
-			{
-				fileListStr += " " + i.getName();
-			}
+			//if(fileList.length > 0)
+			//{
+			//	for(File i : fileList)
+			//	{
+			//		fileListStr += " " + i.getName();
+			//	}
+			//}
 			System.out.println(fileListStr);
 		
 			System.out.println("What would you like to do? Write, Read, or enter Stop to exit");
@@ -108,30 +111,72 @@ public class InitialProj {
 	
 	private static class Filer
 	{
+		//Group (Seperated by Commas), Site1, oxygen, ph, stream velocity (left, right, center), etc
 		String fileName;
 		String contents;
-		int oxygen;
-		int ph;
+		int oxygen1;
+		int ph1;
 		int date[] = new int[3];
-		String etc;
-		int streamVel[] = new int[3] ;
+		String etc1;
+		int streamVel1[] = new int[3];
+		
+		int oxygen2;
+		int ph2;
+		int date2[] = new int[3];
+		String etc2;
+		int streamVel2[] = new int[3] ;
 		String group;
 		
 		public Filer(String fileName, String contents)
 		{
+			String[] name = fileName.split("/");
+			for(int x = 0; x > 3; x++)
+			{
+				date[x] = Integer.parseInt(name[x]);
+			}
+			
 			fileName = this.fileName;
 			contents = this.contents;
+			String[] content = contents.split("\n");
+			content[0] = group;
+			
+			oxygen1 = Integer.parseInt(content[2]);
+			ph1 = Integer.parseInt(content[3]);
+			String[] streamVelComp1 = content[4].split(", ");
+			for(int y = 0; y > 3; y++)
+			{
+				streamVel1[y] = Integer.parseInt(streamVelComp1[y]);
+			}
+			etc1 = content[5];
+			
+			oxygen2 = Integer.parseInt(content[7]);
+			ph2 = Integer.parseInt(content[8]);
+			String[] streamVelComp2 = content[9].split(", ");
+			for(int y = 0; y > 3; y++)
+			{
+				streamVel2[y] = Integer.parseInt(streamVelComp2[y]);
+			}
 			
 		}
 		
-		public int getOxygen()
+		public int getOxygen1()
 		{
-			return oxygen;
+			return oxygen1;
 		}
 		
-		public int getPh()
+		public int getPh1()
 		{
-			return ph;
+			return ph1;
+		}
+		
+		public int getOxygen2()
+		{
+			return oxygen2;
+		}
+		
+		public int getPh2()
+		{
+			return ph2;
 		}
 		
 		public int getMonth()
@@ -158,15 +203,47 @@ public class InitialProj {
 	//Writing method
 	public static void writer(String fileName) throws IOException
 	{
-		String contents = reader(fileName);
-		StringBuilder appender = new StringBuilder(contents);
+		//String contents = reader(fileName);
+		//contents v
+		StringBuilder appender = new StringBuilder();
 		String text = "";
 		//Creates file writer scanner
 		Scanner fileWrSc = new Scanner(System.in);
 		System.out.println("Writes---------------");
 		BufferedWriter fileWrite = new BufferedWriter(new FileWriter(fileName));
+		
+		//Group (Seperated by Commas), Site1, oxygen, ph, stream velocity (left, right, center), etc
+		System.out.println("Enter group names");
 		text = fileWrSc.nextLine();
-		appender.append(" " + text);
+		
+		appender.append("Site1:\n");
+		//Oxygen1
+		System.out.println("Enter in Oxygen for Site 1");
+		text = fileWrSc.nextLine();
+		appender.append("Oxygen: " + text + "\n");
+		//PH1
+		System.out.println("Enter in PH for Site 1");
+		text = fileWrSc.nextLine();
+		appender.append("PH: " + text + "\n");
+		//SVel1
+		System.out.println("Enter in Stream Velocity for Site 1");
+		text = fileWrSc.nextLine();
+		appender.append("Stream Velocity: " + text + "\n");
+		
+		appender.append("Site2:\n");
+		//Oxygen2
+		System.out.println("Enter in Oxygen for Site 2");
+		text = fileWrSc.nextLine();
+		appender.append("Oxygen: " + text + "\n");
+		//PH1
+		System.out.println("Enter in PH for Site 2");
+		text = fileWrSc.nextLine();
+		appender.append("PH: " + text + "\n");
+		//SVel1
+		System.out.println("Enter in Stream Velocity for Site 2");
+		text = fileWrSc.nextLine();
+		appender.append("Stream Velocity: " + text + "\n");
+		
 		fileWrite.write("" + appender);
 		fileWrite.close();
 	}
