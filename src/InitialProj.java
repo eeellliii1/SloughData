@@ -53,8 +53,8 @@ public class InitialProj {
 		{
 		//Gets input to decide next step
 
-			File data = new File(newDir);
-			File[] fileList = data.listFiles();
+			File fold = new File(newDir);
+			File[] fileList = fold.listFiles();
 			String fileListStr = "";
 			//if(fileList.length > 0)
 			//{
@@ -69,7 +69,7 @@ public class InitialProj {
 			word = reader.nextLine();
 			if(word.toLowerCase().equals("write"))
 			{
-				System.out.println("Enter the name of the file you wish to write:");
+				System.out.println("Please enter the date in the format day/month/year (EX: 3-8-2000)");
 				fileName = newDir += ("\\" + reader.nextLine() + ".txt");
 				try 
 				{
@@ -83,16 +83,17 @@ public class InitialProj {
 			}
 			else if(word.toLowerCase().equals("read"))
 			{
-				//System.setProperty("user.dir", "c:\\Users\\" + user + "\\Desktop")
-				System.out.println("Please enter the date in the format day/month/year (EX: 03/08/2000)");
+				System.setProperty("user.dir", "c:\\Users\\" + user + "\\Desktop");
+				System.out.println("Please enter the date in the format day/month/year (EX: 3-8-2000)");
 				String dateName = reader.nextLine();
-				fileName = newDir += ("\\" + dateName + ".txt");
+				fileName = newDir; 
+						//+= ("\\" + dateName + ".txt");
 				
 				
 				//Tests file name
 				System.out.println(fileName);
-				reader(fileName);
-				Filer file = new Filer(dateName, reader(fileName));
+				//reader(fileName);
+				
 			}
 			else
 			{
@@ -129,29 +130,40 @@ public class InitialProj {
 		
 		public Filer(String fileName, String contents)
 		{
-			String[] name = fileName.split("/");
+			String[] aSplit;
+			String[] name = fileName.split("-");
 			for(int x = 0; x > 3; x++)
 			{
 				date[x] = Integer.parseInt(name[x]);
 			}
+			System.out.println(contents);
+			this.fileName = fileName;
+			this.contents = contents;
+			String[] content = contents.split(".");
+			aSplit = content[1].split(":");
 			
-			fileName = this.fileName;
-			contents = this.contents;
-			String[] content = contents.split("\n");
-			content[0] = group;
-			
-			oxygen1 = Integer.parseInt(content[2]);
-			ph1 = Integer.parseInt(content[3]);
-			String[] streamVelComp1 = content[4].split(", ");
+			System.out.println(aSplit[0]);
+			group = aSplit[1];
+			//System.out.println(content[2]);
+			aSplit = content[2].split(":");
+			oxygen1 = Integer.parseInt(aSplit[1]);
+			aSplit = content[3].split(":");
+			ph1 = Integer.parseInt(aSplit[1]);
+			aSplit = content[4].split(":");
+			String[] streamVelComp1 = aSplit[1].split(", ");
 			for(int y = 0; y > 3; y++)
 			{
 				streamVel1[y] = Integer.parseInt(streamVelComp1[y]);
 			}
-			etc1 = content[5];
+			aSplit = content[5].split(":");
+			etc1 = aSplit[1];
 			
-			oxygen2 = Integer.parseInt(content[7]);
-			ph2 = Integer.parseInt(content[8]);
-			String[] streamVelComp2 = content[9].split(", ");
+			aSplit = content[7].split(":");
+			oxygen2 = Integer.parseInt(aSplit[1]);
+			aSplit = content[8].split(":");
+			ph2 = Integer.parseInt(aSplit[1]);
+			aSplit = content[9].split(":");
+			String[] streamVelComp2 = aSplit[1].split(", ");
 			for(int y = 0; y > 3; y++)
 			{
 				streamVel2[y] = Integer.parseInt(streamVelComp2[y]);
@@ -200,11 +212,12 @@ public class InitialProj {
 		}
 	}
 	
-	//Writing method
+	//Writing method ------ SHOULD COMBINE WITH FILER METHOD TO MAKE THINGS MORE SIMPLE. MAKE IT SO FILER METHOD TAKES IN ALL VARIABLES SEPERATELY
 	public static void writer(String fileName) throws IOException
 	{
 		//String contents = reader(fileName);
 		//contents v
+		//reader(fileName);
 		StringBuilder appender = new StringBuilder();
 		String text = "";
 		//Creates file writer scanner
@@ -216,36 +229,39 @@ public class InitialProj {
 		System.out.println("Enter group names");
 		text = fileWrSc.nextLine();
 		
-		appender.append("Site1:\n");
+		appender.append("Site1:\n*");
 		//Oxygen1
 		System.out.println("Enter in Oxygen for Site 1");
 		text = fileWrSc.nextLine();
-		appender.append("Oxygen: " + text + "\n");
+		appender.append("Oxygen: " + text + "\n*");
 		//PH1
 		System.out.println("Enter in PH for Site 1");
 		text = fileWrSc.nextLine();
-		appender.append("PH: " + text + "\n");
+		appender.append("PH: " + text + "\n*");
 		//SVel1
 		System.out.println("Enter in Stream Velocity for Site 1");
 		text = fileWrSc.nextLine();
-		appender.append("Stream Velocity: " + text + "\n");
+		appender.append("Stream Velocity: " + text + "\n*");
 		
-		appender.append("Site2:\n");
+		appender.append("Site2:\n*");
 		//Oxygen2
 		System.out.println("Enter in Oxygen for Site 2");
 		text = fileWrSc.nextLine();
-		appender.append("Oxygen: " + text + "\n");
+		appender.append("Oxygen: " + text + "\n*");
 		//PH1
 		System.out.println("Enter in PH for Site 2");
 		text = fileWrSc.nextLine();
-		appender.append("PH: " + text + "\n");
+		appender.append("PH: " + text + "\n*");
 		//SVel1
 		System.out.println("Enter in Stream Velocity for Site 2");
 		text = fileWrSc.nextLine();
-		appender.append("Stream Velocity: " + text + "\n");
+		appender.append("Stream Velocity: " + text);
 		
 		fileWrite.write("" + appender);
 		fileWrite.close();
+		System.out.println(appender.toString());
+		
+		Filer file = new Filer(fileName, appender.toString());
 	}
 	
 	//Reading method
