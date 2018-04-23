@@ -69,7 +69,7 @@ public class InitialProj {
 			word = reader.nextLine();
 			if(word.toLowerCase().equals("write"))
 			{
-				System.out.println("Please enter the date in the format day/month/year (EX: 3-8-2000)");
+				System.out.println("Please enter the date in the format month-day-year (EX: 3-8-2000)");
 				fileName = newDir += ("\\" + reader.nextLine() + ".txt");
 				try 
 				{
@@ -136,38 +136,43 @@ public class InitialProj {
 			{
 				date[x] = Integer.parseInt(name[x]);
 			}
-			System.out.println(contents);
 			this.fileName = fileName;
 			this.contents = contents;
-			String[] content = contents.split(".");
-			aSplit = content[1].split(":");
+			System.out.println("--------------------------------\ncontents is \n" + contents + "\n--------------------------------");
+			String[] content = contents.split("\n");
 			
-			System.out.println(aSplit[0]);
-			group = aSplit[1];
-			//System.out.println(content[2]);
+			//
+			aSplit = content[0].trim().split(":");
+			group = aSplit[1].trim();
+			
+			//
 			aSplit = content[2].split(":");
-			oxygen1 = Integer.parseInt(aSplit[1]);
-			aSplit = content[3].split(":");
-			ph1 = Integer.parseInt(aSplit[1]);
-			aSplit = content[4].split(":");
+			oxygen1 = Integer.parseInt(aSplit[1].trim());
+			
+			aSplit = content[3].trim().split(":");
+			ph1 = Integer.parseInt(aSplit[1].trim());
+			
+			aSplit = content[4].trim().split(":");
 			String[] streamVelComp1 = aSplit[1].split(", ");
 			for(int y = 0; y > 3; y++)
 			{
-				streamVel1[y] = Integer.parseInt(streamVelComp1[y]);
+				streamVel1[y] = Integer.parseInt(streamVelComp1[y].trim());
 			}
-			aSplit = content[5].split(":");
-			etc1 = aSplit[1];
 			
-			aSplit = content[7].split(":");
-			oxygen2 = Integer.parseInt(aSplit[1]);
-			aSplit = content[8].split(":");
-			ph2 = Integer.parseInt(aSplit[1]);
-			aSplit = content[9].split(":");
+			//
+			aSplit = content[6].trim().split(":");
+			oxygen2 = Integer.parseInt(aSplit[1].trim());
+			
+			aSplit = content[7].trim().split(":");
+			ph2 = Integer.parseInt(aSplit[1].trim());
+			
+			aSplit = content[8].trim().split(":");
 			String[] streamVelComp2 = aSplit[1].split(", ");
 			for(int y = 0; y > 3; y++)
 			{
-				streamVel2[y] = Integer.parseInt(streamVelComp2[y]);
+				streamVel2[y] = Integer.parseInt(streamVelComp2[y].trim());
 			}
+			//
 			
 		}
 		
@@ -226,32 +231,35 @@ public class InitialProj {
 		BufferedWriter fileWrite = new BufferedWriter(new FileWriter(fileName));
 		
 		//Group (Seperated by Commas), Site1, oxygen, ph, stream velocity (left, right, center), etc
-		System.out.println("Enter group names");
-		text = fileWrSc.nextLine();
 		
-		appender.append("Site1:\n*");
+		//Group Names
+		System.out.println("Enter in group member names");
+		text = fileWrSc.nextLine();
+		appender.append("Group Members: " + text + "\n");
+		appender.append("Site1:\n");
+		
 		//Oxygen1
 		System.out.println("Enter in Oxygen for Site 1");
 		text = fileWrSc.nextLine();
-		appender.append("Oxygen: " + text + "\n*");
+		appender.append("Oxygen: " + text + "\n");
 		//PH1
 		System.out.println("Enter in PH for Site 1");
 		text = fileWrSc.nextLine();
-		appender.append("PH: " + text + "\n*");
+		appender.append("PH: " + text + "\n");
 		//SVel1
 		System.out.println("Enter in Stream Velocity for Site 1");
 		text = fileWrSc.nextLine();
-		appender.append("Stream Velocity: " + text + "\n*");
+		appender.append("Stream Velocity: " + text + "\n");
 		
-		appender.append("Site2:\n*");
+		appender.append("Site2:\n");
 		//Oxygen2
 		System.out.println("Enter in Oxygen for Site 2");
 		text = fileWrSc.nextLine();
-		appender.append("Oxygen: " + text + "\n*");
+		appender.append("Oxygen: " + text + "\n");
 		//PH1
 		System.out.println("Enter in PH for Site 2");
 		text = fileWrSc.nextLine();
-		appender.append("PH: " + text + "\n*");
+		appender.append("PH: " + text + "\n");
 		//SVel1
 		System.out.println("Enter in Stream Velocity for Site 2");
 		text = fileWrSc.nextLine();
