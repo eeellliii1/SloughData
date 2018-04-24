@@ -52,17 +52,17 @@ public class InitialProj {
 		while(!(word.toLowerCase().equals("stop")))
 		{
 		//Gets input to decide next step
-
+			//Lists all files in main folder
 			File fold = new File(newDir);
 			File[] fileList = fold.listFiles();
 			String fileListStr = "";
-			//if(fileList.length > 0)
-			//{
-			//	for(File i : fileList)
-			//	{
-			//		fileListStr += " " + i.getName();
-			//	}
-			//}
+			if(fileList.length > 0)
+			{
+				for(File i : fileList)
+				{
+					fileListStr += " \n--\n" + i.getName();
+				}
+			}
 			System.out.println(fileListStr);
 		
 			System.out.println("What would you like to do? Write, Read, or enter Stop to exit");
@@ -86,13 +86,12 @@ public class InitialProj {
 				System.setProperty("user.dir", "c:\\Users\\" + user + "\\Desktop");
 				System.out.println("Please enter the date in the format day/month/year (EX: 3-8-2000)");
 				String dateName = reader.nextLine();
-				fileName = newDir; 
-						//+= ("\\" + dateName + ".txt");
+				fileName = newDir + ("\\" + dateName + ".txt");
 				
 				
 				//Tests file name
-				System.out.println(fileName);
-				//reader(fileName);
+				//System.out.println(fileName);
+				reader(fileName);
 				
 			}
 			else
@@ -138,20 +137,22 @@ public class InitialProj {
 			}
 			this.fileName = fileName;
 			this.contents = contents;
-			System.out.println("--------------------------------\ncontents is \n" + contents + "\n--------------------------------");
+			//System.out.println("--------------------------------\ncontents is \n" + contents + "\n--------------------------------");
 			String[] content = contents.split("\n");
 			
-			//
+			//Gets group names
 			aSplit = content[0].trim().split(":");
 			group = aSplit[1].trim();
 			
-			//
+			//Gets oxygen 1
 			aSplit = content[2].split(":");
 			oxygen1 = Integer.parseInt(aSplit[1].trim());
 			
+			//Gets ph1
 			aSplit = content[3].trim().split(":");
 			ph1 = Integer.parseInt(aSplit[1].trim());
 			
+			//Gets stream velocities 1
 			aSplit = content[4].trim().split(":");
 			String[] streamVelComp1 = aSplit[1].split(", ");
 			for(int y = 0; y > 3; y++)
@@ -159,20 +160,21 @@ public class InitialProj {
 				streamVel1[y] = Integer.parseInt(streamVelComp1[y].trim());
 			}
 			
-			//
+			//Gets oxygen 2
 			aSplit = content[6].trim().split(":");
 			oxygen2 = Integer.parseInt(aSplit[1].trim());
 			
+			//Gets ph 2
 			aSplit = content[7].trim().split(":");
 			ph2 = Integer.parseInt(aSplit[1].trim());
 			
+			//Gets stream velocities 2
 			aSplit = content[8].trim().split(":");
 			String[] streamVelComp2 = aSplit[1].split(", ");
 			for(int y = 0; y > 3; y++)
 			{
 				streamVel2[y] = Integer.parseInt(streamVelComp2[y].trim());
 			}
-			//
 			
 		}
 		
@@ -227,7 +229,7 @@ public class InitialProj {
 		String text = "";
 		//Creates file writer scanner
 		Scanner fileWrSc = new Scanner(System.in);
-		System.out.println("Writes---------------");
+		//System.out.println("Writes---------------");
 		BufferedWriter fileWrite = new BufferedWriter(new FileWriter(fileName));
 		
 		//Group (Seperated by Commas), Site1, oxygen, ph, stream velocity (left, right, center), etc
@@ -276,10 +278,11 @@ public class InitialProj {
 	public static String reader(String fileName)
 	{
 		String text = "";
-		System.out.println("Reads---------------");
+		//System.out.println("Reads---------------");
 		String nextLine = null;
 		try
 		{
+			System.out.println(fileName + "------");
 			FileReader fileRead = new FileReader(fileName);
 			BufferedReader buffFileRead = new BufferedReader(fileRead);
 			//Keep reading the file while there is file left to be read
