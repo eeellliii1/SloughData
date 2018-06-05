@@ -16,99 +16,7 @@ public class InitialProj {
 	 * @param args
 	 */
 
-	
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		String word = "";
-		String fileName = "";
-		Scanner reader = new Scanner(System.in);
-		//Gets the current directory
-		String dir = System.getProperty("user.dir");
-		System.out.println(dir);
-		//Gets current user
-		String[] userSplit = dir.split(Pattern.quote("\\"));
-		System.out.println(userSplit[2]);
-		String user = userSplit[2];
-		
-		//Sets current directory
-		String newDir = "C:\\Users\\" + user + "\\Desktop\\test";
-		
-		//Checks directory
-		System.out.println(newDir);
-		
-		//Setting new directory
-		System.setProperty("user.dir", newDir);
-		
-		//Testing new directory
-		System.out.println(System.getProperty("user.dir"));
-		
-		//Testing new file
-		new File(newDir);
-		// if the directory does not exist, create it
-		
-		boolean desktop = new File("c:\\Users\\" + user + "\\Desktop\\test").mkdirs();
-		
-		//Loop that runs the program		
-		while(!(word.toLowerCase().equals("stop")))
-		{
-		//Gets input to decide next step
-			//Lists all files in main folder
-			File fold = new File(newDir);
-			File[] fileList = fold.listFiles();
-			String fileListStr = "";
-			if(fileList.length > 0)
-			{
-				for(File i : fileList)
-				{
-					fileListStr += " \n--\n" + i.getName();
-				}
-			}
-			System.out.println(fileListStr);
-		
-			System.out.println("What would you like to do? Write, Read, or enter Stop to exit");
-			word = reader.nextLine();
-			if(word.toLowerCase().equals("write"))
-			{
-				System.out.println("Please enter the date in the format month-day-year (EX: 3-8-2000)");
-				fileName = newDir += ("\\" + reader.nextLine() + ".txt");
-				try 
-				{
-					writer(fileName);
-				} 
-				catch (IOException e) 
-				{
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
-			else if(word.toLowerCase().equals("read"))
-			{
-				System.setProperty("user.dir", "c:\\Users\\" + user + "\\Desktop");
-				System.out.println("Please enter the date in the format day/month/year (EX: 3-8-2000)");
-				String dateName = reader.nextLine();
-				fileName = newDir + ("\\" + dateName + ".txt");
-				
-				
-				//Tests file name
-				//System.out.println(fileName);
-				reader(fileName);
-				
-			}
-			else
-			{
-				if(!(word.toLowerCase().equals("stop")))
-				{
-					System.out.println("Invalid input. Please enter a valid input \n\n\n\n");
-				}
-				else
-				{
-					System.out.println("Exiting program.... .... ....");
-				}
-			}
-		}
 
-	}
-	
 	private static class Filer
 	{
 		//Group (Seperated by Commas), Site1, oxygen, ph, stream velocity (left, right, center), etc
@@ -219,9 +127,155 @@ public class InitialProj {
 		}
 	}
 	
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		String word = "";
+		String fileName = "";
+		Scanner reader = new Scanner(System.in);
+		//Gets the current directory
+		String dir = System.getProperty("user.dir");
+		System.out.println(dir);
+		//Gets current user
+		String[] userSplit = dir.split(Pattern.quote("\\"));
+		System.out.println(userSplit[2]);
+		String user = userSplit[2];
+		
+		//Sets current directory
+		String newDir = "C:\\Users\\" + user + "\\Desktop\\test";
+		
+		//Checks directory
+		System.out.println(newDir);
+		
+		//Setting new directory
+		System.setProperty("user.dir", newDir);
+		
+		//Testing new directory
+		System.out.println(System.getProperty("user.dir"));
+		
+		//Testing new file
+		new File(newDir);
+		// if the directory does not exist, create it
+		
+		boolean desktop = new File("c:\\Users\\" + user + "\\Desktop\\test").mkdirs();
+		
+		//Loop that runs the program		
+		while(!(word.toLowerCase().equals("stop")))
+		{
+		//Gets input to decide next step
+			//Lists all files in main folder
+			File fold = new File(newDir);
+			File[] fileList = fold.listFiles();
+			String fileListStr = "";
+			String[] dateNameSplit = new String[2];
+			try 
+			{
+				if(fileList.length > 0)
+				{
+					for(File i : fileList)
+					{
+						System.out.println(i.getName() + "fileList");
+						fileListStr += " \n--\n" + i.getName();
+						dateNameSplit = i.getName().split(".");
+						System.out.println(dateNameSplit.length);
+						if(dateNameSplit.length == 3) 
+						{
+							Filer file = new Filer(dateNameSplit[0], reader(i.getName()));
+						}
+						else
+						{
+							System.out.println(reader(i.getName()) + " is not a valid name.");
+						}
+					}
+				}
+			System.out.println(fileListStr);
+			}
+			catch(NullPointerException e)
+			{
+				System.out.println("No files in folder...");
+			}
+			
+			System.out.println("What would you like to do? Write, Read, or enter Stop to exit");
+			word = reader.nextLine();
+			if(word.toLowerCase().equals("write"))
+			{
+				System.out.println("Please enter the date in the format month-day-year (EX: 3-8-2000)");
+				fileName = newDir += ("\\" + reader.nextLine() + ".txt");
+				try 
+				{
+					writer(fileName);
+				} 
+				catch (IOException e) 
+				{
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			else if(word.toLowerCase().equals("read"))
+			{
+				System.setProperty("user.dir", "c:\\Users\\" + user + "\\Desktop");
+				System.out.println("Please enter the date in the format day/month/year (EX: 3-8-2000)");
+				String dateName = reader.nextLine();
+				fileName = newDir + ("\\" + dateName + ".txt");
+				
+				
+				//Tests file name
+				//System.out.println(fileName);
+				reader(fileName);
+				
+			}
+			else
+			{
+				if(!(word.toLowerCase().equals("stop")))
+				{
+					System.out.println("Invalid input. Please enter a valid input \n\n\n\n");
+				}
+				else
+				{
+					System.out.println("Exiting program.... .... ....");
+				}
+			}
+		}
+
+	}
+	
+	public static String bigChecker(String text, Scanner fileWrSc, String test)
+	{
+		boolean correct = false;
+		boolean fixed = false;
+		if(test.equals("1int"))
+		{
+			while(correct != true)
+				{
+				try
+				{
+					Integer.parseInt(text);
+					fixed = true;
+					//System.out.println("fixed is true");
+				}
+				catch (NumberFormatException e)
+				{
+					System.out.println("Please enter a valid number");
+					fixed = false;
+					//System.out.println("fixed is false");
+					text = fileWrSc.nextLine();
+				}
+				if(fixed == true)
+				{
+					correct = true;
+				}
+		
+				}
+		return text;
+		}
+		return "0";
+	}
+	
 	//Writing method ------ SHOULD COMBINE WITH FILER METHOD TO MAKE THINGS MORE SIMPLE. MAKE IT SO FILER METHOD TAKES IN ALL VARIABLES SEPERATELY
 	public static void writer(String fileName) throws IOException
 	{
+		String left;
+		String middle;
+		String right;
 		//String contents = reader(fileName);
 		//contents v
 		//reader(fileName);
@@ -243,29 +297,45 @@ public class InitialProj {
 		//Oxygen1
 		System.out.println("Enter in Oxygen for Site 1");
 		text = fileWrSc.nextLine();
-		appender.append("Oxygen: " + text + "\n");
+		appender.append("Oxygen: " + bigChecker(text, fileWrSc, "1int") + "\n");
 		//PH1
 		System.out.println("Enter in PH for Site 1");
 		text = fileWrSc.nextLine();
-		appender.append("PH: " + text + "\n");
+		appender.append("PH: " + bigChecker(text, fileWrSc, "1int") + "\n");
 		//SVel1
-		System.out.println("Enter in Stream Velocity for Site 1");
+		System.out.println("Enter in Left Stream Velocity for Site 1");
 		text = fileWrSc.nextLine();
+		left = bigChecker(text, fileWrSc, "1int");
+		System.out.println("Enter in Middle Stream Velocity for Site 1");
+		text = fileWrSc.nextLine();
+		middle = bigChecker(text, fileWrSc, "1int");
+		System.out.println("Enter in Right Stream Velocity for Site 1");
+		text = fileWrSc.nextLine();
+		right = bigChecker(text, fileWrSc, "1int");
+		text = left + ", " + middle + ", " + right;
 		appender.append("Stream Velocity: " + text + "\n");
 		
 		appender.append("Site2:\n");
 		//Oxygen2
 		System.out.println("Enter in Oxygen for Site 2");
 		text = fileWrSc.nextLine();
-		appender.append("Oxygen: " + text + "\n");
-		//PH1
+		appender.append("Oxygen: " + bigChecker(text, fileWrSc, "1int") + "\n");
+		//PH2
 		System.out.println("Enter in PH for Site 2");
 		text = fileWrSc.nextLine();
-		appender.append("PH: " + text + "\n");
-		//SVel1
-		System.out.println("Enter in Stream Velocity for Site 2");
+		appender.append("PH: " + bigChecker(text, fileWrSc, "1int") + "\n");
+		//SVel2
+		System.out.println("Enter in Left Stream Velocity for Site 2");
 		text = fileWrSc.nextLine();
-		appender.append("Stream Velocity: " + text);
+		left = bigChecker(text, fileWrSc, "1int");
+		System.out.println("Enter in Middle Stream Velocity for Site 2");
+		text = fileWrSc.nextLine();
+		middle = bigChecker(text, fileWrSc, "1int");
+		System.out.println("Enter in Right Stream Velocity for Site 2");
+		text = fileWrSc.nextLine();
+		right = bigChecker(text, fileWrSc, "1int");
+		text = left + ", " + middle + ", " + right;
+		appender.append("Stream Velocity: " + text + "\n");
 		
 		fileWrite.write("" + appender);
 		fileWrite.close();
@@ -302,5 +372,16 @@ public class InitialProj {
 		}
 		return text;
 	}
-
+	
+	//Method for getting future graphing information
+	public static int grapho(String catagory, boolean average, String dateS, String dateE)
+	{
+		return 0;
+	}
+	
+	//Non average version
+	public static int grapho(String category)
+	{
+		return 0;
+	}
 }
