@@ -165,6 +165,7 @@ public class InitialProj {
 			//Lists all files in main folder
 			File fold = new File(newDir);
 			File[] fileList = fold.listFiles();
+			System.out.println(fileList[0]);
 			String fileListStr = "";
 			String[] dateNameSplit = new String[2];
 			try 
@@ -186,6 +187,10 @@ public class InitialProj {
 							System.out.println(reader(i.getName()) + " is not a valid name.");
 						}
 					}
+				}
+				else
+				{
+					System.out.println("No Files Found...");
 				}
 			System.out.println(fileListStr);
 			}
@@ -213,7 +218,7 @@ public class InitialProj {
 			else if(word.toLowerCase().equals("read"))
 			{
 				System.setProperty("user.dir", "c:\\Users\\" + user + "\\Desktop");
-				System.out.println("Please enter the date in the format day/month/year (EX: 3-8-2000)");
+				System.out.println("Please enter the date in the format day-month-year (EX: 3-8-2000)");
 				String dateName = reader.nextLine();
 				fileName = newDir + ("\\" + dateName + ".txt");
 				
@@ -376,6 +381,43 @@ public class InitialProj {
 	//Method for getting future graphing information
 	public static int grapho(String catagory, boolean average, String dateS, String dateE)
 	{
+		boolean day = false;
+		boolean month = false;
+		boolean year = false;
+		String sD = dateS.split("-")[0];
+		String sM = dateS.split("-")[1];
+		String sY = dateS.split("-")[2];
+		
+		String eD = dateE.split("-")[0];
+		String eM = dateE.split("-")[1];
+		String eY = dateE.split("-")[2];
+		
+		if(dateS.split("-")[0].equals(dateE.split("-")[0]))
+		{
+			
+		}
+		
+		
+		if(catagory == "sVelR")
+		{
+			
+		}
+		else if(catagory == "sVelM")
+		{
+			
+		}
+		else if(catagory == "sVelL")
+		{
+			
+		}
+		else if(catagory == "DO")
+		{
+			
+		}
+		else if(catagory == "PH")
+		{
+			
+		}
 		return 0;
 	}
 	
