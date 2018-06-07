@@ -7,6 +7,7 @@
  *
  */
 import java.util.*;
+import java.util.Random;
 import java.util.regex.Pattern;
 import java.io.*;
 import java.io.File;
@@ -37,6 +38,7 @@ public class InitialProj {
 		
 		public Filer(String fileName, String contents)
 		{
+			System.out.println("fileName");
 			String[] aSplit;
 			String[] name = fileName.split("-");
 			for(int x = 0; x > 3; x++)
@@ -165,7 +167,7 @@ public class InitialProj {
 			//Lists all files in main folder
 			File fold = new File(newDir);
 			File[] fileList = fold.listFiles();
-			System.out.println(fileList[0]);
+			//System.out.println(fileList[0]);
 			String fileListStr = "";
 			String[] dateNameSplit = new String[2];
 			try 
@@ -213,6 +215,18 @@ public class InitialProj {
 				{
 					// TODO Auto-generated catch block
 					e.printStackTrace();
+				}
+			}
+			else if(word.toLowerCase().equals("whumpus"))
+			{
+				fileName = newDir += ("\\");
+				try
+				{
+				writerTest(fileName);
+				}
+				catch(IOException e)
+				{
+					System.out.println("Oh no");
 				}
 			}
 			else if(word.toLowerCase().equals("read"))
@@ -281,6 +295,8 @@ public class InitialProj {
 		String left;
 		String middle;
 		String right;
+		//Check original filename
+		System.out.println(fileName);
 		//String contents = reader(fileName);
 		//contents v
 		//reader(fileName);
@@ -345,8 +361,91 @@ public class InitialProj {
 		fileWrite.write("" + appender);
 		fileWrite.close();
 		System.out.println(appender.toString());
-		
+		//Check File Location
+		System.out.println(fileName);
 		Filer file = new Filer(fileName, appender.toString());
+	}
+	
+	public static void writerTest(String fileName) throws IOException
+	{
+		//Checking file name location path
+		System.out.println(fileName);
+		Scanner fileWrSc = new Scanner(System.in);
+		Random randInt = new Random();
+		String left;
+		String middle;
+		String right;
+		//String contents = reader(fileName);
+		//contents v
+		//reader(fileName);
+		StringBuilder appender = new StringBuilder();
+		for(int i = 0; i < 20; i++)
+			{
+			String tName = fileName + "13-" + Integer.toString(i) + "-0.txt";
+			String text = "";
+			//Creates file writer scanner
+		
+			//System.out.println("Writes---------------");
+			BufferedWriter fileWrite = new BufferedWriter(new FileWriter(tName));
+		
+			//Group (Seperated by Commas), Site1, oxygen, ph, stream velocity (left, right, center), etc
+		
+			//Group Names
+			System.out.println("Enter in group member names");
+			text = "test file";
+			appender.append("Group Members: " + text + "\n");
+			appender.append("Site1:\n");
+		
+			//Oxygen1
+			System.out.println("Enter in Oxygen for Site 1");
+			text = Integer.toString(randInt.nextInt(50) + 1);
+			appender.append("Oxygen: " + bigChecker(text, fileWrSc, "1int") + "\n");
+			//PH1
+			System.out.println("Enter in PH for Site 1");
+			text = Integer.toString(randInt.nextInt(50) + 1);
+			appender.append("PH: " + bigChecker(text, fileWrSc, "1int") + "\n");
+			//SVel1
+			System.out.println("Enter in Left Stream Velocity for Site 1");
+			text = Integer.toString(randInt.nextInt(50) + 1);
+			left = bigChecker(text, fileWrSc, "1int");
+			System.out.println("Enter in Middle Stream Velocity for Site 1");
+			text = Integer.toString(randInt.nextInt(50) + 1);
+			middle = bigChecker(text, fileWrSc, "1int");
+			System.out.println("Enter in Right Stream Velocity for Site 1");
+			text = Integer.toString(randInt.nextInt(50) + 1);
+			right = bigChecker(text, fileWrSc, "1int");
+			text = left + ", " + middle + ", " + right;
+			appender.append("Stream Velocity: " + text + "\n");
+		
+			appender.append("Site2:\n");
+			//Oxygen2
+			System.out.println("Enter in Oxygen for Site 2");
+			text = Integer.toString(randInt.nextInt(50) + 1);
+			appender.append("Oxygen: " + bigChecker(text, fileWrSc, "1int") + "\n");
+			//PH2
+			System.out.println("Enter in PH for Site 2");
+			text = Integer.toString(randInt.nextInt(50) + 1);
+			appender.append("PH: " + bigChecker(text, fileWrSc, "1int") + "\n");
+			//SVel2
+			System.out.println("Enter in Left Stream Velocity for Site 2");
+			text = Integer.toString(randInt.nextInt(50) + 1);
+			left = bigChecker(text, fileWrSc, "1int");
+			System.out.println("Enter in Middle Stream Velocity for Site 2");
+			text = Integer.toString(randInt.nextInt(50) + 1);
+			middle = bigChecker(text, fileWrSc, "1int");
+			System.out.println("Enter in Right Stream Velocity for Site 2");
+			text = Integer.toString(randInt.nextInt(50) + 1);
+			right = bigChecker(text, fileWrSc, "1int");
+			text = left + ", " + middle + ", " + right;
+			appender.append("Stream Velocity: " + text + "\n");
+		
+			fileWrite.write("" + appender);
+			fileWrite.close();
+			System.out.println(appender.toString());
+			//File Location Check
+			System.out.println(tName);
+			Filer file = new Filer(tName, appender.toString());
+		}
 	}
 	
 	//Reading method
@@ -392,7 +491,7 @@ public class InitialProj {
 		String eM = dateE.split("-")[1];
 		String eY = dateE.split("-")[2];
 		
-		if(dateS.split("-")[0].equals(dateE.split("-")[0]))
+		if(sM.equals(eM))
 		{
 			
 		}
