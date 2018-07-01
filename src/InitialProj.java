@@ -7,6 +7,7 @@
  *
  */
 import java.util.*;
+import javax.swing.JFrame;
 import java.util.Random;
 import java.util.regex.Pattern;
 import java.io.*;
@@ -18,6 +19,8 @@ public class InitialProj {
 	 */
 	
 	public static void main(String[] args) {
+		Visualizer.main(args);
+		
 		// TODO Auto-generated method stub
 		String word = "";
 		String fileName = "";
@@ -70,12 +73,13 @@ public class InitialProj {
 						System.out.println(dateNameSplit.length);
 						if(dateNameSplit.length == 3) 
 						{
-							Filer file = new Filer(dateNameSplit[0], reader(i.getName()));
+							Filer file = new Filer(dateNameSplit[0], readerM.readerM(i.getName()));
 						}
 						else
 						{
-							System.out.println(reader(i.getName()) + " is not a valid name.");
+							System.out.println(readerM.readerM(i.getName()) + " is not a valid name.");
 						}
+						
 					}
 				}
 				else
@@ -127,7 +131,7 @@ public class InitialProj {
 				
 				//Tests file name
 				//System.out.println(fileName);
-				reader(fileName);
+				readerM.readerM(fileName);
 				
 			}
 			else
@@ -144,7 +148,7 @@ public class InitialProj {
 		}
 
 	}
-	
+}
 	
 	
 	//Writing method ------ SHOULD COMBINE WITH FILER METHOD TO MAKE THINGS MORE SIMPLE. MAKE IT SO FILER METHOD TAKES IN ALL VARIABLES SEPERATELY
@@ -153,80 +157,4 @@ public class InitialProj {
 	
 	
 	//Reading method
-	public static String reader(String fileName)
-	{
-		String text = "";
-		//System.out.println("Reads---------------");
-		String nextLine = null;
-		try
-		{
-			System.out.println(fileName + "------");
-			FileReader fileRead = new FileReader(fileName);
-			BufferedReader buffFileRead = new BufferedReader(fileRead);
-			//Keep reading the file while there is file left to be read
-			while((nextLine = buffFileRead.readLine()) != null)
-			{
-				System.out.println(nextLine + "\n");
-				text += nextLine;
-			}
-		}
-		catch(FileNotFoundException exc)
-		{
-			System.out.println("File not found!\nCreating File...");
-		}
-		catch(IOException exc)
-		{
-			System.out.println("IO Exception");
-		}
-		return text;
-	}
 	
-	//Method for getting future graphing information
-	public static int grapho(String catagory, boolean average, String dateS, String dateE)
-	{
-		boolean day = false;
-		boolean month = false;
-		boolean year = false;
-		String sD = dateS.split("-")[0];
-		String sM = dateS.split("-")[1];
-		String sY = dateS.split("-")[2];
-		
-		String eD = dateE.split("-")[0];
-		String eM = dateE.split("-")[1];
-		String eY = dateE.split("-")[2];
-		
-		if(sM.equals(eM))
-		{
-			
-		}
-		
-		
-		if(catagory == "sVelR")
-		{
-			
-		}
-		else if(catagory == "sVelM")
-		{
-			
-		}
-		else if(catagory == "sVelL")
-		{
-			
-		}
-		else if(catagory == "DO")
-		{
-			
-		}
-		else if(catagory == "PH")
-		{
-			
-		}
-		return 0;
-	}
-	
-	//Non average version
-	public static int grapho(String category)
-	{
-		return 0;
-	}
-}
