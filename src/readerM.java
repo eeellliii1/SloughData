@@ -10,14 +10,14 @@ public class readerM {
 	{
 		String dir = System.getProperty("user.dir");
 		String[] userSplit = dir.split(Pattern.quote("\\"));
-		System.out.println("First checkpoint");
+		//System.out.println("First checkpoint");
 		//System.out.println(userSplit[1]);
 		String user = userSplit[2];
 		String[] fileNameSplit = fileName.split("-");
-		System.out.println("Second checkpoint");
-		System.out.println(fileName + "            ayayayayayyay             "         + fileNameSplit.length + "    " + fileNameSplit[2]);
+		//System.out.println("Second checkpoint");
+		//System.out.println(fileName + "            ayayayayayyay             "         + fileNameSplit.length + "    " + fileNameSplit[2]);
 		String[] yearSplit = fileNameSplit[2].split(Pattern.quote("."));
-		System.out.println(yearSplit.length + "           asdfasdfasdfasdfasdfasdfsdf333333asdfasd");
+		//System.out.println(yearSplit.length + "           asdfasdfasdfasdfasdfasdfsdf333333asdfasd");
 		String year = yearSplit[0];
 		String newDir = "C:\\Users\\" + user + "\\Desktop\\test" + "\\" + year;
 		System.setProperty("user.dir", newDir);
@@ -53,6 +53,16 @@ public class readerM {
 		//System.out.println(text);
 		//System.out.println("Execute order 66  " + text);
 		return text;
+	}
+	
+	public static void display(String words)
+	{
+		String[] data = words.split(Pattern.quote("$%^&"));
+		for (String i : data)
+		{
+			System.out.println(i + "\n");
+		}
+		
 	}
 	
 	//Method for getting future graphing information

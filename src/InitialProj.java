@@ -77,8 +77,9 @@ public class InitialProj {
 							//System.out.println(b.getName() + "             aksldjflaksdjfl;sdjfas");
 							if (dateNameSplit.length == 2) 
 							{
-								System.out.println(b.getName() + " klklk             aksldjflaksdjfl;sdjfas");
+								System.out.println(b.getName());
 								Filer dateName = new Filer(dateNameSplit[0], readerM.readerM(b.getName()));
+								//System.out.println("well ur problem is alksjdfljasldkfjaklsdjfklsdjflk     " + b.getName());
 								filerList.add(dateName);
 							}
 							else 
@@ -145,8 +146,8 @@ public class InitialProj {
 				
 				//Tests file name
 				//System.out.println(fileName);
-				readerM.readerM(fileName);
-				
+				//System.out.println(readerM.readerM(dateName));
+				readerM.display(readerM.readerM(dateName));
 			}
 			
 			//add a sort that firsts checks <= >= year then month then day and whitles down list to find a range for graphing. Possibly make into new method for external input
