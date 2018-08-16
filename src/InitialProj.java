@@ -32,10 +32,11 @@ public class InitialProj {
 		String[] userSplit = dir.split(Pattern.quote("\\"));
 		ArrayList<Filer> filerList = new ArrayList<Filer>();
 		//System.out.println(userSplit[2]);
+		
 		String user = userSplit[2];
 		
 		//Sets current directory
-		String newDir = "C:\\Users\\" + user + "\\Desktop\\test";
+		String newDir = "C:\\Users\\" + user + "\\Desktop\\DataFolder";
 		
 		//Checks directory
 		//System.out.println(newDir);
@@ -50,7 +51,7 @@ public class InitialProj {
 		new File(newDir);
 		// if the directory does not exist, create it
 		
-		boolean desktop = new File("c:\\Users\\" + user + "\\Desktop\\testi").mkdirs();
+		//boolean desktop = new File("c:\\Users\\" + user + "\\Desktop\\testi").mkdirs();
 		
 		//Loop that runs the program		
 		while (!(word.toLowerCase().equals("stop"))) {

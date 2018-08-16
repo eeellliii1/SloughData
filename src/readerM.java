@@ -19,7 +19,7 @@ public class readerM {
 		String[] yearSplit = fileNameSplit[2].split(Pattern.quote("."));
 		//System.out.println(yearSplit.length + "           asdfasdfasdfasdfasdfasdfsdf333333asdfasd");
 		String year = yearSplit[0];
-		String newDir = "C:\\Users\\" + user + "\\Desktop\\test" + "\\" + year;
+		String newDir = "C:\\Users\\" + user + "\\Desktop\\DataFolder" + "\\" + year;
 		System.setProperty("user.dir", newDir);
 		///////////////////////////////////////////////////////////
 		//System.out.println(fileName);

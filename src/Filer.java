@@ -38,6 +38,7 @@ public class Filer {
 			//System.out.println(aSplit.length);
 			//System.out.println("Prepare the whumpooosti      " + contents);
 			//System.out.println(content[0] + "   the whimsical woopeedangus");
+			
 			group = aSplit[1].trim();
 			
 			//System.out.println("Have you ever heard the tale of darth Pelagius the wise? It is not a story the Jedi would tell you. Pelagius was a sith lord who had such control over midoclorians that he could control the creation of life itself. He could save those he loved from dying yet he was killed himself. Ironic, he could save others but not himself." + "\n" + content[1] + "\n");
